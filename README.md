@@ -13,7 +13,7 @@ In order to cross compile runtime make sure you have **[docker](https://www.dock
 Then clone this repository and call make from the runtime directory :
 
 ```bash
-cd runtime
+$ cd runtime
 $ make
 ```
 
@@ -36,7 +36,7 @@ Also, make sure you already cross-compiled the runtime as stated above.
 Then use make from the test directory to cross compile the examle code:
 
 ```bash
-cd test
+$ cd test
 $ make
 ```
 
