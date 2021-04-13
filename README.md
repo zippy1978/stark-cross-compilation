@@ -1,3 +1,5 @@
+![Stark](https://github.com/zippy1978/stark/raw/main/logo/StarkLogoDark.png)
+
 # Stark cross compilation
 
 This repository is dedicated to cross-compilation of materials related to the Stark programming language.
@@ -25,15 +27,23 @@ For example: **runtime/build/arm-unknown-linux-gnueabihf/libstark.a**
 
 A simple test program and its compilation Makefile is available in the test directory.
 
-In order to run it, you will need to install cross compilation tools on Linux (does not work on macOS at the time):
+In order to run it, you will need to install cross compilation tools.
+
+On Linux (Ubuntu):
 
 ```bash
 $ sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 ```
+On macOS (can be a bit long because built from sources):
+
+```bash
+$ brew tap SergioBenitez/osxct
+$ brew install FiloSottile/musl-cross/musl-cross --without-x86_64 --with-arm-hf
+```
 
 Also, make sure you already cross-compiled the runtime as stated above.
 
-Then use make from the test directory to cross compile the examle code:
+Then use make from the test directory to cross compile the example code:
 
 ```bash
 $ cd test

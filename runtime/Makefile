@@ -48,7 +48,7 @@ stark_sources:
     fi
 
 arm-unknown-linux-gnueabihf: bdwgc_sources stark_sources
-	$(call compile_target,linux-armv6,$@)
+	$(call compile_target,linux-armv6-musl,$@)
 
 clean:
 	@rm -rf $(BUILD_DIR)
