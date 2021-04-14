@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build
 
 # Controls when the action will run. 
 on:
@@ -27,7 +27,14 @@ jobs:
       - uses: docker-practice/actions-setup-docker@master
 
       # Runs a set of commands using the runners shell
-      - name: Build
+      - name: Build runtime
         run: |
           cd runtime
           make
+          rm -rf build/stark
+          rm -rf build/bdwgc
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: runtime
+          path: ${{github.workspace}}/runtime/build/*
