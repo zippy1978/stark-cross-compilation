@@ -10,10 +10,6 @@ ifeq ($(STARK_BRANCH),)
 STARK_BRANCH := develop
 endif
 
-ifeq ($(BWDGC_TAG),)
-BWDGC_TAG := v8.0.4
-endif
-
 all: arm-unknown-linux-gnueabihf arm-unknown-linux-musleabihf archive
 
 # Compile target function
@@ -48,7 +44,6 @@ endef
 bdwgc_sources:
 	@if [ ! -d $(BDWGC_DIR) ]; then \
         git clone git://github.com/ivmai/bdwgc.git $(BDWGC_DIR); \
-		cd $(BDWGC_DIR) && git checkout tags/$(BWDGC_TAG); \
     fi
 
 stark_sources:
