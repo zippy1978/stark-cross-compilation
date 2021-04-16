@@ -10,7 +10,7 @@ ifeq ($(STARK_BRANCH),)
 STARK_BRANCH := develop
 endif
 
-all: arm-unknown-linux-gnueabihf arm-unknown-linux-musleabihf archive
+all: arm-unknown-linux-gnueabihf arm-unknown-linux-musleabihf
 
 # Compile target function
 # $(1) is the dockcross toolchain name (example: linux-armv6). List available here: https://github.com/dockcross/dockcross
