@@ -4,8 +4,17 @@ BDWGC_DIR := $(BUILD_DIR)/bdwgc
 STARK_DIR := $(BUILD_DIR)/stark
 RUNTIME_SRC_DIR := $(STARK_DIR)/runtime
 DOCKCROSS_CMD := dockcross
+ARCHIVE := archive.zip
 
-all: arm-unknown-linux-gnueabihf
+ifeq ($(STARK_BRANCH),)
+STARK_BRANCH := develop
+endif
+
+ifeq ($(BWDGC_TAG),)
+BWDGC_TAG := v8.0.4
+endif
+
+all: arm-unknown-linux-gnueabihf arm-unknown-linux-musleabihf archive
 
 # Compile target function
 # $(1) is the dockcross toolchain name (example: linux-armv6). List available here: https://github.com/dockcross/dockcross
@@ -39,16 +48,25 @@ endef
 bdwgc_sources:
 	@if [ ! -d $(BDWGC_DIR) ]; then \
         git clone git://github.com/ivmai/bdwgc.git $(BDWGC_DIR); \
+		cd $(BDWGC_DIR) && git checkout tags/$(BWDGC_TAG); \
     fi
 
 stark_sources:
 	@if [ ! -d $(STARK_DIR) ]; then \
         git clone https://github.com/zippy1978/stark.git $(STARK_DIR); \
-		cd $(STARK_DIR) && git checkout develop; \
+		cd $(STARK_DIR) && git checkout $(STARK_BRANCH); \
     fi
 
 arm-unknown-linux-gnueabihf: bdwgc_sources stark_sources
+	$(call compile_target,linux-armv6,$@)
+
+arm-unknown-linux-musleabihf: bdwgc_sources stark_sources
 	$(call compile_target,linux-armv6-musl,$@)
 
 clean:
 	@rm -rf $(BUILD_DIR)
+
+archive:
+	@rm -rf $(STARK_DIR)
+	@rm -rf $(BDWGC_DIR)
+	@cd $(BUILD_DIR) && zip -r $(ARCHIVE) *

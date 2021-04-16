@@ -5,6 +5,7 @@ BUILD_DIR := build
 LINKER := arm-linux-gnueabihf-gcc:-lpthread -lrt
 ifeq ($(UNAME), Darwin)
 	LINKER := arm-linux-musleabihf-gcc:-static -lpthread -lrt
+	RPI_TARGET := arm-unknown-linux-musleabihf
 endif
 
 
