@@ -28,8 +28,11 @@ define compile_target
 	@mkdir -p $(LIB_DIR)/libstark
 	
 	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/IO.cpp -o $(LIB_DIR)/libstark/io.o'
-	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/Conversion.cpp -o $(LIB_DIR)/libstark/conversion.o'
+	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/CInterop.cpp -o $(LIB_DIR)/libstark/cinterop.o'
 	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/Memory.cpp -o $(LIB_DIR)/libstark/memory.o'
+	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/PrimaryTypes.cpp -o $(LIB_DIR)/libstark/primarytypes.o'
+	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/String.cpp -o $(LIB_DIR)/libstark/string.o'
+	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/Util.cpp -o $(LIB_DIR)/libstark/util.o'
 	
 	@cp $(BDWGC_DIR)/build-$(1)/libgc.a $(LIB_DIR)/libstark
 	@cd $(LIB_DIR)/libstark && ../../$(DOCKCROSS_CMD) ar -x libgc.a
