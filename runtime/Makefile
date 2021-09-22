@@ -33,6 +33,7 @@ define compile_target
 	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/PrimaryTypes.cpp -o $(LIB_DIR)/libstark/primarytypes.o'
 	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/String.cpp -o $(LIB_DIR)/libstark/string.o'
 	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/Util.cpp -o $(LIB_DIR)/libstark/util.o'
+	@./$(BUILD_DIR)/$(DOCKCROSS_CMD) bash -c '$$CC $(CXX_FLAGS) -I $(BDWGC_DIR)/include -c $(RUNTIME_SRC_DIR)/Array.cpp -o $(LIB_DIR)/libstark/array.o'
 	
 	@cp $(BDWGC_DIR)/build-$(1)/libgc.a $(LIB_DIR)/libstark
 	@cd $(LIB_DIR)/libstark && ../../$(DOCKCROSS_CMD) ar -x libgc.a
